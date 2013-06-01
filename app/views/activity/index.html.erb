@@ -1,0 +1,8 @@
+<h1>Activity#index</h1>
+<p>Find me in app/views/activity/index.html.erb</p>
+
+<% @activities.each do |activity|%>
+  <h1><%= activity.title%></h1>
+  <h4><%= activity.description%></h4>
+<%end%>
+<%= link_to 'Create a new Activity', new_activity_path , class: "btn btn-large"%>
