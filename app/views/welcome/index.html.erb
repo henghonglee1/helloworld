@@ -1,9 +1,33 @@
-<h1>Welcome#index</h1>
-<p>Find me in app/views/welcome/index.html.erb</p>
-<%= link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook) %>
-<%if true%>
-<p><%= @somerubycode %></p>
-<%end%>
-<%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
-<%= link_to "Sign in", user_session_path, :method => :post %>
-<%= link_to "Password", new_user_password_path , :method => :get %>
+<div class="row">
+  <div class="span10">
+    <%if current_user%>
+      <h1>Welcome <%= current_user.name%>!</h1>
+      <%= image_tag current_user.avatar.url(:medium) %>
+      <% else %>
+      <h1>Welcome!</h1>
+      <p>Find me in app/views/welcome/index.html.erb</p>
+      <%end%>
+    </div>
+      <div class="span2">
+    <%if current_user%>
+        <%= link_to "View All Activities", activity_index_path,class: "btn" %>
+        <%= link_to "Add Activity", new_activity_path,class: "btn" %>
+    <%end%>
+  </div>
+
+
+</div>
+
+<% if user_signed_in? %>
+  
+<% else %>
+
+  <%= link_to image_tag("facebook.png", :border => 0), user_omniauth_authorize_path(:facebook) %>
+  <button class="btn"><%= link_to "Sign in", new_user_session_path %></button>
+  <li><%= link_to "Sign up", new_user_registration_path %></li>
+  <li><%= link_to "Forgot Password", new_user_password_path , :method => :get %></li>
+<% end %>
+
+
+</div>
+

@@ -11,14 +11,10 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130531173426) do
+ActiveRecord::Schema.define(:version => 20130601230504) do
 
-  create_table "activities", :force => true do |t|
-    t.string   "title"
-    t.string   "description"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
-  end
+# Could not dump table "activities" because of following StandardError
+#   Unknown type 'country' for column 'country'
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
@@ -37,6 +33,13 @@ ActiveRecord::Schema.define(:version => 20130531173426) do
     t.string   "provider"
     t.string   "uid"
     t.string   "name"
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
+    t.string   "hometown"
+    t.string   "home_country"
+    t.string   "home_city"
   end
 
   add_index "users", ["authentication_token"], :name => "index_users_on_authentication_token", :unique => true

@@ -1,2 +1,7 @@
-<h1>Activity#show</h1>
-<p>Find me in app/views/activity/show.html.erb</p>
+<%= link_to 'All Activities', activity_index_path , class: "btn btn-large"%>
+<h1>Title: <%= @showActivity.title %></h1>
+<p><%= @showActivity.description %></p>
+<p>Address: <%= @showActivity.address %></p>
+<%= image_tag @showActivity.activity_image.url %> <br>
+<%= link_to 'Edit Activity', edit_activity_path , class: "btn btn-large"%>
+<%= link_to 'Back To Activities', activity_index_path , class: "btn btn-large"%>

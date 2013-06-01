@@ -1,8 +1,48 @@
-<h1>Activity#index</h1>
-<p>Find me in app/views/activity/index.html.erb</p>
+<div class="row">
+  <div class="span12">
+    <div class = "hero-unit">
+    <h1>Activity#index in <%= current_user.home_city%></h1>
+    <p>Find me in app/views/activity/index.html.erb</p>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="span12">
+    <%= link_to 'My Submissions', my_submission_path , class: "btn btn-large"%>
+    <%= link_to 'Create a new Activity', new_activity_path , class: "btn btn-large pull-right"%>
+  </div>
+</div>
 
 <% @activities.each do |activity|%>
-  <h1><%= activity.title%></h1>
-  <h4><%= activity.description%></h4>
+
+<div class="well">
+  <div class="container">
+  <div class="row">
+    <div class="span6">
+      
+      <h1><%= link_to activity.title, activity_path(activity.id) , class: ""%></h1>
+      <h4>Description: <%= activity.description%></h4>
+      <h4>Score: <%= activity.score%></h4>
+      <%if activity.user %>
+      <h4>Submitted By: <%= activity.user.name%></h4>
+      <%end%>
+      
+    </div>
+    <div class="span6">
+      <%= image_tag activity.activity_image.url(:medium) %> <br>
+    </div>
+  </div>
+    
+
+<div class="row">
+  <div class="span12">
+  <%= link_to 'Upvote', activity_upvote_path(activity.id) , class: "btn btn-large"%>
+  <%= link_to 'Downvote', activity_downvote_path(activity.id) , class: "btn btn-large"%>
+  </div>
+</div>
+</div>
+  </div>
 <%end%>
+
 <%= link_to 'Create a new Activity', new_activity_path , class: "btn btn-large"%>

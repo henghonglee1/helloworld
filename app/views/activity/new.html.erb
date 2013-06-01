@@ -1,6 +1,17 @@
 <h1>Activity#new</h1>
-<%= simple_form_for @newActivity do |f| %>
-  <%= f.input :title %>
-  <%= f.input :description %>
-  <%= f.button :submit %>
+
+<%= simple_form_for(@newActivity, :url => "/activity/",:html=>{:class=>"span8", :mulitpart=>true }) do |f| %>
+	<%= f.input :title, :required => true , :label=> "Title"%>
+  <%= f.input :description,as: :text, :required => true , :label=> "Description"%>
+  <%= f.input :address, :required => false , :label=> "Address"%>
+  <%= f.input :shortlocation, :required => false , :label=> "Location"%>
+  <%= f.input :shortactivity, :required => false , :label=> "What to do"%>
+  <%= f.input :lat, :required => false , :label=> "lat"%>
+  <%= f.input :lon, :required => false , :label=> "lon"%>
+
+  <p>Country: <%= @hometown%> </p>
+  <%= f.input :activity_image, :label=> "Activity_Image"%>
+    <%= f.input :exciting, :label=> "Exciting"%>
+  <%= f.button :submit, "Submit!",class: "btn btn-large btn-primary" %>
+  <%= link_to 'Cancel', activity_index_path , class: "btn btn-large"%>
 <% end %>

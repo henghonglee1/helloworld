@@ -1,9 +1,22 @@
 HelloWorld::Application.routes.draw do
+  namespace :api do
+    namespace :v1 do
+      resources :activity
+        match "/woo" => "activity#woo"
+        match "/exciting" => "activity#exciting"
+        match "/nua" => "activity#nua"
+    end
+  end
 
   root :to => 'welcome#index' 
   resources :activity     
+  match "/activity_text" => "welcome#text"
+  match "/activity_auth" => "welcome#auth"
+  match "/activity_mysubmission" => "activity#mysubmission" , :as => :my_submission
+  match "/activity/:id/upvote" => "activity#upvote" , :as => :activity_upvote
+  match "/activity/:id/downvote" => "activity#downvote"  , :as => :activity_downvote
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
-  
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
   

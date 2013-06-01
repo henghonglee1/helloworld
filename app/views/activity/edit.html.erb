@@ -1,2 +1,38 @@
-<h1>Activity#edit</h1>
-<p>Find me in app/views/activity/edit.html.erb</p>
+<div class="row">
+  <div class="span12">
+    <h1>Activity#edit</h1>
+    <p>Find me in app/views/activity/edit.html.erb</p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="span6">
+    <%= simple_form_for(@editActivity,:url=>{ :action => "update" } ,:html=>{:class=>"span12", :mulitpart=>true }) do |f| %>
+      <%= f.input :title, :required => true , :label=> "Title"%></br>
+      <%= f.input :description,as: :text, :required => true , :label=> "Description"%></br></br>
+      <%= f.input :country, collection: [ "Singapore", "Korea", "Thailand"], :required=>true%>
+      <%= f.input :address, :required => false , :label=> "Address"%></br>
+      <%= f.input :shortlocation, :required => false , :label=> "Location"%>
+      <%= f.input :shortactivity, :required => false , :label=> "What to do"%>
+      <%= f.input :lat, :required => false , :label=> "lat"%>
+      <%= f.input :lon, :required => false , :label=> "lon"%>
+      <%= f.input :activity_image, :label=> "Activity_Image"%></br>
+      <%= f.input :exciting, :label=> "Exciting"%>
+
+  </div>
+
+    <div class="span6">
+
+<%= f.input :opening, :required => false , :label=> "Opening Hour"%></br>
+      <%= f.input :closing, :required => false , :label=> "Closing Hour"%></br>
+
+    </div>
+</div>
+
+<div class="row">
+  <div class="span12">
+      <%= f.button :submit, "Update",class: "btn btn-large btn-primary" %></br>
+      <%= link_to 'Cancel', activity_path(@editActivity.id) , class: "btn btn-large"%>
+    <% end %>
+  </div>
+</div>
